@@ -73,6 +73,12 @@ public class ImageCropActivity extends ImageBaseActivity implements View.OnClick
         options.inSampleSize = calculateInSampleSize(options, displayMetrics.widthPixels, displayMetrics.heightPixels);
         options.inJustDecodeBounds = false;
         mBitmap = BitmapFactory.decodeFile(imagePath, options);
+        if(mBitmap == null){
+            showToast("打开图片失败");
+            finish();
+            return;
+        }
+        
 //        mCropImageView.setImageBitmap(mBitmap);
         //设置默认旋转角度
         mCropImageView.setImageBitmap(mCropImageView.rotate(mBitmap, BitmapUtil.getBitmapDegree(imagePath)));
